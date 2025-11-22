@@ -11,6 +11,8 @@ function App() {
   const [error, setError] = useState(null);
   const [editingCustomer, setEditingCustomer] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [isCreatingNew, setIsCreatingNew] = useState(false);
 
   useEffect(() => {
     loadData();
@@ -19,16 +21,22 @@ function App() {
   const loadData = async () => {
     try {
       setLoading(true);
+      setError(null);
+      
       const [taxesResponse, countriesResponse] = await Promise.all([
         api.getTaxes(),
         api.getCountries()
       ]);
       
-      setTaxData(taxesResponse.data);
-      setCountries(countriesResponse.data);
+      console.log('Loaded taxes:', taxesResponse.data);
+      console.log('Loaded countries:', countriesResponse.data);
+      
+      setTaxData(taxesResponse.data || []);
+      setCountries(countriesResponse.data || []);
+      
     } catch (err) {
-      setError('Failed to load data');
-      console.error('Error loading data:', err);
+      console.error('API Error:', err);
+      setError('Failed to load data. Please check your connection.');
     } finally {
       setLoading(false);
     }
@@ -36,64 +44,112 @@ function App() {
 
   const handleEdit = (customer) => {
     setEditingCustomer(customer);
+    setIsCreatingNew(false);
     setIsModalOpen(true);
   };
 
-  const handleSave = async (updatedCustomer) => {
+  const handleAddNew = () => {
+    setEditingCustomer(null);
+    setIsCreatingNew(true);
+    setIsModalOpen(true);
+  };
+
+  const handleSave = async (customerData) => {
     try {
-      await api.updateTax(updatedCustomer.id, updatedCustomer);
+      setSaving(true);
       
-      // Update local state
-      setTaxData(prevData =>
-        prevData.map(item =>
-          item.id === updatedCustomer.id ? updatedCustomer : item
-        )
-      );
+      if (isCreatingNew) {
+        // Create new customer
+        const newCustomer = {
+          name: customerData.name,
+          country: customerData.country,
+          gender: customerData.gender,
+          createdAt: new Date().toISOString()
+        };
+        
+        console.log('Creating new customer:', newCustomer);
+        const response = await api.createTax(newCustomer);
+        const createdCustomer = response.data;
+        
+        setTaxData(prevData => [createdCustomer, ...prevData]);
+        console.log('New customer created successfully!');
+        
+      } else {
+        // Update existing customer
+        const updatedCustomer = {
+          ...editingCustomer,
+          name: customerData.name,
+          country: customerData.country,
+          gender: customerData.gender
+        };
+        
+        console.log('Updating customer:', updatedCustomer);
+        const response = await api.updateTax(updatedCustomer.id, updatedCustomer);
+        
+        // Update local state with response data
+        setTaxData(prevData =>
+          prevData.map(item =>
+            item.id === updatedCustomer.id ? response.data : item
+          )
+        );
+        
+        console.log('Customer updated successfully!');
+      }
       
-      // Reload data to ensure sync with server
-      await loadData();
     } catch (err) {
-      setError('Failed to update customer');
-      console.error('Error updating customer:', err);
+      console.error('Save error:', err);
+      setError(`Failed to ${isCreatingNew ? 'create' : 'update'} customer. Please try again.`);
+    } finally {
+      setSaving(false);
+      setIsModalOpen(false);
+      setEditingCustomer(null);
+      setIsCreatingNew(false);
     }
   };
 
   const handleCloseModal = () => {
-    setIsModalOpen(false);
-    setEditingCustomer(null);
+    if (!saving) {
+      setIsModalOpen(false);
+      setEditingCustomer(null);
+      setIsCreatingNew(false);
+    }
   };
 
-  if (loading) {
-    return (
-      <div className="app-loading">
-        <div className="loading-spinner">Loading...</div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="app-error">
-        <div className="error-message">{error}</div>
-        <button onClick={loadData} className="retry-button">
-          Retry
-        </button>
-      </div>
-    );
-  }
+  const handleRetry = () => {
+    loadData();
+  };
 
   return (
     <div className="app">
       <header className="app-header">
-        <h1>Tax Management</h1>
+        <div className="header-content">
+          <h1>Customer Management</h1>
+          <p className="header-subtitle">Manage your customer information</p>
+        </div>
       </header>
       
       <main className="app-main">
-        <TaxTable 
-          data={taxData} 
-          onEdit={handleEdit}
-          countries={countries}
-        />
+        {loading ? (
+          <div className="app-loading">
+            <div className="loading-spinner-large"></div>
+            <div className="loading-text">Loading data...</div>
+          </div>
+        ) : error ? (
+          <div className="app-error">
+            <div className="error-icon">⚠️</div>
+            <div className="error-message">{error}</div>
+            <button onClick={handleRetry} className="retry-button">
+              Try Again
+            </button>
+          </div>
+        ) : (
+          <TaxTable 
+            data={taxData} 
+            onEdit={handleEdit}
+            onAddNew={handleAddNew}
+            countries={countries}
+          />
+        )}
       </main>
 
       <EditModal
@@ -102,7 +158,15 @@ function App() {
         customer={editingCustomer}
         onSave={handleSave}
         countries={countries}
+        saving={saving}
+        isCreatingNew={isCreatingNew}
       />
+
+      <footer className="app-footer">
+        <div className="footer-content">
+          <p> </p>
+        </div>
+      </footer>
     </div>
   );
 }
