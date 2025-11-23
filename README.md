@@ -29,8 +29,7 @@ We've used the latest and most reliable technologies to ensure a smooth experien
 
 ## See It Live
 
-Live Demo:
-Netlify: [https://customer-management-system1.netlify.app/](https://customer-management-system1.netlify.app/)
+Live Demo (Netlify): [https://customer-management-system1.netlify.app/](https://customer-management-system1.netlify.app/)
 
 
 ## Get Started in Minutes
