@@ -2,7 +2,7 @@
 
 A modern, responsive React application that helps you effortlessly manage your customer information. With its beautiful interface and intuitive design, you can easily view, search, and update customer details - all in one place.
 
-## 🌟 Features That Make Your Life Easier
+## Features That Make Your Life Easier
 
 **Customer Data Table**: A clean, well-organized display that shows all your customer information at a glance. No more messy spreadsheets or hard-to-read lists.
 
@@ -16,7 +16,7 @@ A modern, responsive React application that helps you effortlessly manage your c
 
 **Beautiful Design**: Enjoy a modern interface with smooth animations and pleasant visual elements that make using the app a pleasure.
 
-## 🛠️ Built With Modern Technology
+## Built With Modern Technology
 
 We've used the latest and most reliable technologies to ensure a smooth experience:
 
@@ -27,7 +27,7 @@ We've used the latest and most reliable technologies to ensure a smooth experien
 - **Styling**: Custom CSS - A unique, modern design created just for this app
 - **API**: MockAPI - Simulates a real backend for testing and demonstration
 
-## 📦 Get Started in Minutes
+## Get Started in Minutes
 
 ### For Development
 
@@ -53,16 +53,16 @@ We've used the latest and most reliable technologies to ensure a smooth experien
 
 Simply visit our live demo and start using the app immediately - no installation required!
 
-## 🚀 See It Live
+## See It Live
 
-**🔗 Live Demo: [https://your-app-name.netlify.app](https://your-app-name.netlify.app)**
+**🔗 Live Demo: [https://your-app-name.netlify.app](https://customer-management-system1.netlify.app/)**
 
 Want to deploy your own version? Run:
 ```bash
 npm run build
 ```
 
-## 📱 How to Use the App
+## How to Use the App
 
 ### Viewing Your Customers
 - The main table shows all your customer records in a clean, easy-to-read format
@@ -81,7 +81,7 @@ npm run build
 - Make your changes in the clean, simple form that appears
 - Hit "Save Changes" and watch the update happen instantly
 
-## 🎨 How It's Built
+## How It's Built
 
 ### Main Components
 
@@ -117,7 +117,7 @@ Each customer record contains:
 - `country`: Where the customer is located
 - `createdAt`: When the customer record was created
 
-## 🎯 Technical Excellence
+## Technical Excellence
 
 This app demonstrates professional development practices:
 
@@ -128,7 +128,7 @@ This app demonstrates professional development practices:
 - **Modern Styling**: Beautiful CSS with gradients, animations, and responsive design
 - **Accessibility**: Built with semantic HTML and proper labels for screen readers
 
-## 🌈 Designed for Humans
+## Designed for Humans
 
 We've paid special attention to the user experience:
 
@@ -138,42 +138,20 @@ We've paid special attention to the user experience:
 - **Intuitive Navigation**: Everything is where you'd expect it to be
 - **Color Coding**: Gender and country tags use distinct colors for quick scanning
 
-## 📱 Looks Great Everywhere
+## Looks Great Everywhere
 
 The app automatically adapts to your device:
 - **Desktop**: Full-featured experience with efficient use of space
 - **Tablet**: Adjusted layouts that maintain usability
 - **Mobile**: Touch-friendly buttons and stacked layouts for easy one-handed use
 
-## 🔮 What's Next?
-
-We're constantly improving the app. Here's what we're considering:
-- Letting you remove customers you no longer need
-- Handling large datasets with pagination
-- Exporting your customer data for backup or analysis
-- Adding charts to visualize your customer base
-- User accounts for team collaboration
-- Dark mode for comfortable nighttime use
-
-## 🤝 Want to Contribute?
-
-We welcome contributions! Here's how:
-1. Fork the repository to your own account
-2. Create a feature branch: `git checkout -b feature/your-amazing-idea`
-3. Commit your changes: `git commit -m 'Add your amazing feature'`
-4. Push to your branch: `git push origin feature/your-amazing-idea`
-5. Open a Pull Request and let's discuss your improvements!
-
-## 📄 License
-
-This project is open source and available under the MIT License, meaning you're free to use, modify, and distribute it.
 
 ## 👨‍💻 Created With Care
 
 **Harshitha**  
 - GitHub: [@rharshitha19](https://github.com/rharshitha19)
 
-## 🙏 Special Thanks
+## Special Thanks
 
 - **Lucide** for the beautiful icons that enhance our interface
 - **Modern design communities** for inspiration and best practices
@@ -181,6 +159,6 @@ This project is open source and available under the MIT License, meaning you're 
 
 ---
 
-**⭐ Love this project? Give it a star on GitHub to show your support!**
+**Love this project? Give it a star on GitHub to show your support!**
 
-*Built with care and attention to detail* 💙
+*Built with care and attention to detail* �
