@@ -49,10 +49,6 @@ We've used the latest and most reliable technologies to ensure a smooth experien
 
 4. **Open your browser and visit** `http://localhost:3000`
 
-### For End Users
-
-Simply visit our live demo and start using the app immediately - no installation required!
-
 ## See It Live
 
 Live Demo: [https://customer-management-system1.netlify.app/](https://customer-management-system1.netlify.app/)
