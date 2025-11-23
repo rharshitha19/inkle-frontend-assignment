@@ -29,7 +29,9 @@ We've used the latest and most reliable technologies to ensure a smooth experien
 
 ## See It Live
 
-Live Demo: [https://customer-management-system1.netlify.app/](https://customer-management-system1.netlify.app/)
+Live Demo:
+Netlify: [https://customer-management-system1.netlify.app/](https://customer-management-system1.netlify.app/)
+Vercel: [https://inkle-frontend-assignment1.vercel.app/]
 
 ## Get Started in Minutes
 
